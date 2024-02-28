@@ -261,7 +261,7 @@ $(function() {
         lastResult : null
     };
 
-   // App.init();
+    App.init();
 
     Quagga.onProcessed(function(result) {
         var drawingCtx = Quagga.canvas.ctx.overlay,
