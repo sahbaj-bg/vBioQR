@@ -10,7 +10,9 @@ body {
     display: none;
 }
 
-
+#qr-reader img {
+    display: none;
+}
 .section {
     max-width: 500px;
     display: flex;
