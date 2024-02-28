@@ -64,7 +64,24 @@ button:hover {
     text-decoration: none !important;
     color: #1d9bf0;
 }
-
+#interactive.viewport {
+    position: relative;
+    max-width: 400px;
+    margin: 0 auto;
+}
+#interactive.viewport > canvas, #interactive.viewport > video {
+    max-width: 100%;
+    width: 100%;
+}
+#interactive.viewport > canvas, #interactive.viewport > video {
+    max-width: 100%;
+    width: 100%;
+}
+canvas.drawing, canvas.drawingBuffer {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
 video {
     width: 100% !important;
     border: 1px solid #b2b2b2 !important;
