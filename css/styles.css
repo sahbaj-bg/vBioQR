@@ -29,7 +29,7 @@ body {
 #qr-reader {
     width: 100%;
     max-width: 400px;;
-    padding: 20px !important;
+    padding: 20px;
     border: none !important;
     border-radius: 8px;
 }
@@ -87,4 +87,11 @@ video {
     width: 100% !important;
     border: 1px solid #b2b2b2 !important;
     border-radius: 0.25em;
+}
+
+
+@media (max-width: 980px) {
+    #qr-reader {
+        padding: 0;
+    }
 }
