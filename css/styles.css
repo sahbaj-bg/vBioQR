@@ -28,6 +28,7 @@ body {
 
 #qr-reader {
     width: 100%;
+    max-width: 400px;;
     padding: 20px !important;
     border: none !important;
     border-radius: 8px;
