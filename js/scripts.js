@@ -60,7 +60,7 @@ $(document).ready(function () {
         $('.cerror').empty().hide();
 
         $.ajax({
-            url: '/',
+            url: AJAX_URL,
             method: 'POST',
             data: { registerusername: self.find('[name=registerusername]').val(), crossplatform: cp },
             dataType: 'json',
@@ -70,7 +70,7 @@ $(document).ready(function () {
                 webauthnRegister(j.challenge, function (success, info) {
                     if (success) {
                         $.ajax({
-                            url: '/',
+                            url: AJAX_URL,
                             method: 'POST',
                             data: { register: info },
                             dataType: 'json',
@@ -103,7 +103,7 @@ $(document).ready(function () {
         $('.cerror').empty().hide();
 
         $.ajax({
-            url: '/',
+            url: AJAX_URL,
             method: 'POST',
             data: { loginusername: self.find('[name=loginusername]').val() },
             dataType: 'json',
@@ -113,7 +113,7 @@ $(document).ready(function () {
                 webauthnAuthenticate(j.challenge, function (success, info) {
                     if (success) {
                         $.ajax({
-                            url: '/',
+                            url: AJAX_URL,
                             method: 'POST',
                             data: { login: info },
                             dataType: 'json',

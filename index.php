@@ -1,5 +1,5 @@
 <?php
-print_r($_SERVER);
+// print_r($_SERVER);
 /*
 If you put the whole webauthn directory in the www document root and put an index.php in there
 which just includes this file, it should then work. Alternatively set it as a link to this file.
@@ -288,7 +288,7 @@ if (!empty($_POST)) {
         <?php
         echo file_get_contents(__DIR__.'/js/webauthnregister.js');
         echo file_get_contents(__DIR__.'/js/webauthnauthenticate.js');
-        echo "var AJAX_URL=".__DIR__;
+        echo "var AJAX_URL='".$_SERVER['SCRIPT_NAME']."';";
         ?>
     </script>
     <!-- Bootstrap JavaScript Libraries -->
