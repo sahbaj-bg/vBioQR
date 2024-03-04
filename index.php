@@ -1,5 +1,5 @@
 <?php
-
+echo __DIR__;
 /*
 If you put the whole webauthn directory in the www document root and put an index.php in there
 which just includes this file, it should then work. Alternatively set it as a link to this file.
