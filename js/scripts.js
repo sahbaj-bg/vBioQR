@@ -19,7 +19,7 @@ var app = {
                 lastResult = decodedText;
                 console.log(`Scan result = ${decodedText}`, decodedResult);
 
-                $("#qr-reader-results").append( `<div>[${countResults}] - ${decodedText}</div>`);
+                $("#qr-reader-results").append(`<div>[${countResults}] - ${decodedText}</div>`);
 
                 // Optional: To close the QR code scannign after the result is found
                 html5QrcodeScanner.clear();
@@ -47,5 +47,97 @@ var app = {
 $(document).ready(function () {
     app.init();
 
-});
 
+    $('#iregisterform').submit(function (ev) {
+        var self = $(this);
+        ev.preventDefault();
+        var cp = $('select[name=cp]').val();
+        if (cp == "") {
+            $('.cerror').show().text("Please choose cross-platform setting - see note below about what this means");
+            return;
+        }
+
+        $('.cerror').empty().hide();
+
+        $.ajax({
+            url: '/',
+            method: 'POST',
+            data: { registerusername: self.find('[name=registerusername]').val(), crossplatform: cp },
+            dataType: 'json',
+            success: function (j) {
+                $('#iregisterform,#iregisterdokey').toggle();
+                /* activate the key and get the response */
+                webauthnRegister(j.challenge, function (success, info) {
+                    if (success) {
+                        $.ajax({
+                            url: '/',
+                            method: 'POST',
+                            data: { register: info },
+                            dataType: 'json',
+                            success: function (j) {
+                                $('#iregisterform,#iregisterdokey').toggle();
+                                $('.cdone').text("registration completed successfully").show();
+                                setTimeout(function () { $('.cdone').hide(300); }, 2000);
+                            },
+                            error: function (xhr, status, error) {
+                                $('.cerror').text("registration failed: " + error + ": " + xhr.responseText).show();
+                            }
+                        });
+                    } else {
+                        $('.cerror').text(info).show();
+                    }
+                });
+            },
+
+            error: function (xhr, status, error) {
+                $('#iregisterform').show();
+                $('#iregisterdokey').hide();
+                $('.cerror').text("couldn't initiate registration: " + error + ": " + xhr.responseText).show();
+            }
+        });
+    });
+
+    $('#iloginform').submit(function (ev) {
+        var self = $(this);
+        ev.preventDefault();
+        $('.cerror').empty().hide();
+
+        $.ajax({
+            url: '/',
+            method: 'POST',
+            data: { loginusername: self.find('[name=loginusername]').val() },
+            dataType: 'json',
+            success: function (j) {
+                $('#iloginform,#ilogindokey').toggle();
+                /* activate the key and get the response */
+                webauthnAuthenticate(j.challenge, function (success, info) {
+                    if (success) {
+                        $.ajax({
+                            url: '/',
+                            method: 'POST',
+                            data: { login: info },
+                            dataType: 'json',
+                            success: function (j) {
+                                $('#iloginform,#ilogindokey').toggle();
+                                $('.cdone').text("login completed successfully").show();
+                                setTimeout(function () { $('.cdone').hide(300); }, 2000);
+                            },
+                            error: function (xhr, status, error) {
+                                $('.cerror').text("login failed: " + error + ": " + xhr.responseText).show();
+                            }
+                        });
+                    } else {
+                        $('.cerror').text(info).show();
+                    }
+                });
+            },
+
+            error: function (xhr, status, error) {
+                $('#iloginform').show();
+                $('#ilogindokey').hide();
+                $('.cerror').text("couldn't initiate login: " + error + ": " + xhr.responseText).show();
+            }
+        });
+    });
+
+});
