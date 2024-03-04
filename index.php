@@ -30,6 +30,7 @@ function oops($s)
 
 function userpath($username)
 {
+   
     $username = str_replace('.', '%2E', $username);
     return sprintf('%s/%s.json', USER_DATABASE, urlencode($username));
 }
@@ -227,7 +228,7 @@ if (!empty($_POST)) {
                                         <label for="" class="form-label">Enter a new username (eg email address): </label>
                                         <input type="text" class="form-control" name="registerusername" id="" aria-describedby="helpId" placeholder="" />
                                     </div>
-                                    <div class="mb-3">
+                                    <div class="mb-3 d-none">
                                         <label for="" class="form-label">Cross-platform?<sup>*</sup></label>
                                         <select class="form-select form-select-lg" name="cp" id="">
                                             <option value=''>(choose one)</option>
@@ -235,14 +236,14 @@ if (!empty($_POST)) {
                                             <option>Yes</option>
                                         </select>
                                     </div>
-                                    <p class="form-text text-muted">* Use cross-platform 'Yes' when you have a removable device, like
+                                    <!-- <p class="form-text text-muted">* Use cross-platform 'Yes' when you have a removable device, like
                                         a Yubico key, which you would want to use to login on different
                                         computers; say 'No' when your device is attached to the computer (in
                                         that case in Windows 10 1903 release, your login
                                         is linked to Windows Hello and you can use any device it supports
                                         whether registered with that device or not, but only on that
                                         computer). The choice affects which device(s) are offered by the
-                                        browser and/or computer security system.</p>
+                                        browser and/or computer security system.</p> -->
 
 
                                     <button type="submit" class="btn btn-primary">

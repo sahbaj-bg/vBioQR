@@ -51,11 +51,13 @@ $(document).ready(function () {
     $('#iregisterform').submit(function (ev) {
         var self = $(this);
         ev.preventDefault();
-        var cp = $('select[name=cp]').val();
-        if (cp == "") {
-            $('.cerror').show().text("Please choose cross-platform setting - see note below about what this means");
-            return;
-        }
+        var cp="No";
+        // var cp = $('select[name=cp]').val();
+        // alert(cp);
+        // if (cp == "") {
+        //     $('.cerror').show().text("Please choose cross-platform setting - see note below about what this means");
+        //     return;
+        // }
 
         $('.cerror').empty().hide();
 
