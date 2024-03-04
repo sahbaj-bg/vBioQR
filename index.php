@@ -1,18 +1,18 @@
 <?php
-echo __DIR__;
+
 /*
 If you put the whole webauthn directory in the www document root and put an index.php in there
 which just includes this file, it should then work. Alternatively set it as a link to this file.
 */
 
-require_once('vendor/autoload.php');
+require_once(__DIR__.'/vendor/autoload.php');
 
 /* In this example, the user database is simply a directory of json files
   named by their username (urlencoded so there are no weird characters
   in the file names). For simplicity, it's in the HTML tree so someone
   could look at it - you really, really don't want to do this for a
   live system */
-define('USER_DATABASE', 'users/.users');
+define('USER_DATABASE', __DIR__.'/users/.users');
 if (!file_exists(USER_DATABASE)) {
     if (!@mkdir(USER_DATABASE)) {
         error_log(sprintf('Cannot create user database directory - is the html directory writable by the web server? If not: "mkdir %s; chmod 777 %s"', USER_DATABASE, USER_DATABASE));
@@ -286,8 +286,8 @@ if (!empty($_POST)) {
     </div>
     <script type="application/javascript">
         <?php
-        echo file_get_contents('./js/webauthnregister.js');
-        echo file_get_contents('./js/webauthnauthenticate.js');
+        echo file_get_contents(__DIR__.'/js/webauthnregister.js');
+        echo file_get_contents(__DIR__.'/js/webauthnauthenticate.js');
         ?>
     </script>
     <!-- Bootstrap JavaScript Libraries -->

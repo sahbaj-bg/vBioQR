@@ -76,11 +76,11 @@ $(document).ready(function () {
                             dataType: 'json',
                             success: function (j) {
                                 $('#iregisterform,#iregisterdokey').toggle();
-                                $('.cdone').text("registration completed successfully").show();
+                                $('.cdone').text("Registration completed successfully").show();
                                 setTimeout(function () { $('.cdone').hide(300); }, 2000);
                             },
                             error: function (xhr, status, error) {
-                                $('.cerror').text("registration failed: " + error + ": " + xhr.responseText).show();
+                                $('.cerror').text("Registration failed: " + error + ": " + xhr.responseText).show();
                             }
                         });
                     } else {
@@ -92,7 +92,7 @@ $(document).ready(function () {
             error: function (xhr, status, error) {
                 $('#iregisterform').show();
                 $('#iregisterdokey').hide();
-                $('.cerror').text("couldn't initiate registration: " + error + ": " + xhr.responseText).show();
+                $('.cerror').text("Couldn't initiate registration: " + error + ": " + xhr.responseText).show();
             }
         });
     });
@@ -119,7 +119,7 @@ $(document).ready(function () {
                             dataType: 'json',
                             success: function (j) {
                                 $('#iloginform,#ilogindokey').toggle();
-                                $('.cdone').text("login completed successfully").show();
+                                $('.cdone').text("Login completed successfully").show();
                                 setTimeout(function () { $('.cdone').hide(300); }, 2000);
                             },
                             error: function (xhr, status, error) {
